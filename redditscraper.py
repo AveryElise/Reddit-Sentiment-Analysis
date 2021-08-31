@@ -1,10 +1,6 @@
 import praw
 import pandas as pd
-import matplotlib.pyplot as plt
 from datetime import datetime
-import os.path
-from pandas.io import sql
-from sqlalchemy import create_engine
 import config as cf
 
 #PRAW Project : objective is to determine whether or not the word count affects rank of post, & also most popular words in top titles.
@@ -47,16 +43,18 @@ def get_subscriber_count(subreddits):
 	"""
 	sub_count = []
 	for subreddit in subreddits:
-		temp = {}
-		temp['subreddit'] = subreddit
-		temp['subscribers'] = reddit.subreddit(subreddit).subscribers
-		sub_count.append(temp)
+		try:
+			temp = {}
+			temp['subreddit'] = subreddit
+			temp['subscribers'] = reddit.subreddit(subreddit).subscribers
+			sub_count.append(temp)
+		except:
+			print(subreddit + " is now defunct")
+			continue
 	return sub_count
 
 
 def main():
-	#Create SQL connection
-	engine = create_engine('mysql+mysqlconnector://%s:%s@%s:%s/scraping_data' % (cf.user, cf.passw, cf.host, cf. port), echo=False)
 
 	subreddits = ["aww", "funny"]
 
@@ -68,11 +66,8 @@ def main():
 	df = pd.DataFrame(data, columns = ['subreddit', 'post_rank', 'title', 'title_length', 'score', 'postID'])
 	df['date_pulled'] = today
 
-	#push to mysql - needs fixing
-	# df.to_sql(name='subreddit_data', con=engine, if_exists = 'append', index=False)
-
 	#save data as csv
-	df.to_csv(r'%s_scrape.csv' % today ,index=False)
+	df.to_csv(r'csv_scrapes/%s_scrape.csv' % today ,index=False)
 
 if __name__ == '__main__':
 	main()
