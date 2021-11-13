@@ -69,5 +69,7 @@ def main():
 	#save data as csv
 	df.to_csv(r'csv_scrapes/%s_scrape.csv' % today ,index=False)
 
+
+
 if __name__ == '__main__':
 	main()
