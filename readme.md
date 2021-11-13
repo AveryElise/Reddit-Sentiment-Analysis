@@ -7,5 +7,3 @@ This script connects to the Reddit API (PRAW) and collects post data (title, mon
 View the fully interactive Dashboard on Tableau Public: [**Tableau Public Dashboard**](https://public.tableau.com/app/profile/avery.headley/viz/SubredditSentiments/Subredditsvaryintheirpreferred)
 
 ![](Visualizations/subreddit_sentiments.gif)
-
-![](Visualizations/can_we_predict_subreddit.pdf)
