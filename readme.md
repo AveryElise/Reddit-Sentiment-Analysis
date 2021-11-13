@@ -8,4 +8,4 @@ View the fully interactive Dashboard on Tableau Public: [**Tableau Public Dashbo
 
 ![](Visualizations/subreddit_sentiments.gif)
 
-![](Visualizations/Can we predict the type of Subreddit by Title Length and Sentiment.pdf)
+![](Visualizations/can_we_predict_subreddit.pdf)
